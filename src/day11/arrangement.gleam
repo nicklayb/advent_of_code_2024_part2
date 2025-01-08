@@ -15,6 +15,7 @@ const rules = [Zero, Even]
 
 pub fn parse(string) {
   string
+  |> string.trim()
   |> string.split(" ")
   |> list.map(fn(part) {
     let assert Ok(int) = int.parse(part)
@@ -88,13 +89,11 @@ fn apply_rule(part, rule) {
 }
 
 fn split_even_number(number) {
-  io.debug(number)
   let string = int.to_string(number)
   let part_length = string.length(string) / 2
   let half = part_length - 1
   let left = string.slice(string, at_index: 0, length: part_length)
-  let right = string.slice(string, at_index: half, length: part_length)
-  io.debug(#(left, right))
+  let right = string.slice(string, at_index: half + 1, length: part_length)
   let assert Ok(left_int) = int.parse(left)
   let assert Ok(right_int) = int.parse(right)
   #(left_int, right_int)

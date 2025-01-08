@@ -7,16 +7,20 @@ pub fn main() {
   input.challenge(11, part_1, part_2)
 }
 
-pub fn part_1(content) {
+fn part_1(content) {
+  evolve_until(content, 25)
+}
+
+fn part_2(content) {
+  evolve_until(content, 75)
+}
+
+fn evolve_until(content, length) {
   let arrangement = arrangement.parse(content)
   let updated_arrangement =
-    arrangement.evolve_until(arrangement, 25, fn(arrangement) {
-      io.debug(arrangement)
+    arrangement.evolve_until(arrangement, length, fn(arrangement) {
+      arrangement
     })
 
   list.length(updated_arrangement)
-}
-
-fn part_2(_content) {
-  0
 }
